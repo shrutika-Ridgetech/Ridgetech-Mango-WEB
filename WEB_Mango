@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ridgetech — Salesforce delivery for teams that ship</title>
+<meta name="description" content="Ridgetech builds and maintains Salesforce platforms for companies whose revenue depends on them.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E2A2B;
+    --ink-soft:#3F6A63;
+    --paper:#F4F6F3;
+    --paper-deep:#E7ECE7;
+    --contour:#C4D3CC;
+    --amber:#E8A33D;
+    --amber-deep:#B87A1E;
+    --rule:rgba(14,42,43,.14);
+    --measure:68ch;
+  }
+
+  *{box-sizing:border-box;}ß
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Public Sans",system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{width:min(1180px,92vw);margin-inline:auto;}
+
+  .eyebrow{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.72rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    display:flex;align-items:center;gap:.7rem;
+    margin:0;
+  }
+  .eyebrow::after{content:"";height:1px;flex:1;background:var(--rule);}
+
+  h1,h2,h3{
+    font-family:"Bricolage Grotesque",system-ui,sans-serif;
+    font-weight:800;
+    line-height:1.02;
+    letter-spacing:-.025em;
+    margin:0;
+  }
+
+  header{
+    position:sticky;top:0;z-index:40;
+    background:rgba(244,246,243,.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--rule);
+  }
+  .bar{display:flex;align-items:center;justify-content:space-between;padding:1.05rem 0;}
+  .logo{display:flex;align-items:center;gap:.6rem;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:1.18rem;letter-spacing:-.03em;}
+  .logo svg{display:block;}
+  nav{display:flex;gap:2rem;align-items:center;}
+  nav a{
+    color:var(--ink);text-decoration:none;font-size:.93rem;font-weight:500;
+    padding-bottom:2px;border-bottom:1.5px solid transparent;transition:border-color .18s;
+  }
+  nav a:hover,nav a:focus-visible{border-color:var(--amber);}
+  @media(max-width:760px){nav{display:none;}}
+
+  .hero{position:relative;padding:6.5rem 0 5rem;overflow:hidden;}
+  .topo{
+    position:absolute;inset:0;width:100%;height:100%;
+    pointer-events:none;opacity:.9;
+  }
+  .topo path{fill:none;stroke:var(--contour);stroke-width:1.15;}
+  .topo path.lit{stroke:var(--amber);stroke-width:1.6;opacity:.55;}
+  .hero .wrap{position:relative;z-index:2;}
+  h1{font-size:clamp(2.9rem,7.4vw,5.6rem);max-width:16ch;margin:1.6rem 0 0;}
+  h1 em{font-style:normal;color:var(--ink-soft);}
+  .lede{font-size:clamp(1.05rem,1.9vw,1.3rem);max-width:52ch;margin:1.7rem 0 0;color:var(--ink-soft);}
+
+  .cta-row{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2.4rem;align-items:center;}
+  .btn{
+    display:inline-flex;align-items:center;gap:.6rem;
+    font-family:"Public Sans",sans-serif;font-weight:600;font-size:.97rem;
+    padding:.85rem 1.5rem;border-radius:2px;text-decoration:none;
+    border:1.5px solid var(--ink);cursor:pointer;transition:transform .16s,background .16s,color .16s,border-color .16s;
+  }
+  .btn-primary{background:var(--ink);color:var(--paper);}
+  .btn-primary:hover{background:var(--amber-deep);border-color:var(--amber-deep);transform:translateY(-1px);}
+  .btn-ghost{background:transparent;color:var(--ink);}
+  .btn-ghost:hover{background:var(--paper-deep);transform:translateY(-1px);}
+  .hint{font-family:"IBM Plex Mono",monospace;font-size:.75rem;color:var(--ink-soft);}
+
+  section{padding:5.5rem 0;border-top:1px solid var(--rule);}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start;}
+  @media(max-width:860px){.grid{grid-template-columns:1fr;gap:2.2rem;}}
+  h2{font-size:clamp(1.9rem,3.6vw,2.9rem);max-width:18ch;margin-top:1.4rem;}
+  .body-copy{max-width:var(--measure);color:var(--ink-soft);}
+  .body-copy p{margin:0;}
+  .body-copy p+p{margin-top:1rem;}
+
+  .stages{list-style:none;margin:2.5rem 0 0;padding:0;}
+  .stage{
+    display:grid;grid-template-columns:7.5rem 1fr;gap:1.6rem;
+    padding:1.5rem 0;border-top:1px solid var(--rule);
+  }
+  .stage:last-child{border-bottom:1px solid var(--rule);}
+  .elev{
+    font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.06em;
+    color:var(--amber-deep);padding-top:.25rem;
+  }
+  .stage h3{font-size:1.22rem;font-weight:600;letter-spacing:-.01em;}
+  .stage p{margin:.45rem 0 0;color:var(--ink-soft);font-size:.97rem;max-width:56ch;}
+  @media(max-width:600px){.stage{grid-template-columns:1fr;gap:.35rem;}}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem;}
+  @media(max-width:860px){.cards{grid-template-columns:1fr;}}
+  .card{
+    background:var(--paper-deep);padding:1.9rem;border-radius:3px;
+    border:1px solid transparent;transition:border-color .2s,transform .2s;
+  }
+  .card:hover{border-color:var(--contour);transform:translateY(-2px);}
+  .card h3{font-size:1.06rem;font-weight:600;letter-spacing:-.005em;}
+  .card p{margin:.6rem 0 0;font-size:.94rem;color:var(--ink-soft);}
+  .card .tick{font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--amber-deep);letter-spacing:.1em;margin:0;}
+
+  .band{background:var(--ink);color:var(--paper);border-top:none;}
+  .band h2{color:var(--paper);}
+  .band .body-copy{color:rgba(244,246,243,.72);}
+  .band .eyebrow{color:rgba(244,246,243,.6);}
+  .band .eyebrow::after{background:rgba(244,246,243,.22);}
+  .band .btn-primary{background:var(--amber);color:var(--ink);border-color:var(--amber);}
+  .band .btn-primary:hover{background:var(--paper);border-color:var(--paper);}
+
+  footer{padding:2.5rem 0;border-top:1px solid var(--rule);}
+  .foot{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;font-size:.85rem;color:var(--ink-soft);}
+  .foot a{color:var(--ink-soft);}
+
+  :focus-visible{outline:2.5px solid var(--amber-deep);outline-offset:3px;}
+
+  @media(prefers-reduced-motion:no-preference){
+    .rise{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease;}
+    .rise.in{opacity:1;transform:none;}
+    .topo path{stroke-dasharray:2400;stroke-dashoffset:2400;animation:draw 2.4s ease forwards;}
+    @keyframes draw{to{stroke-dashoffset:0;}}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <div class="logo">
+      <svg width="22" height="22" viewBox="0 0 22 22" aria-hidden="true">
+        <path d="M1 17 L7 6 L11 12 L15 4 L21 17" fill="none" stroke="#0E2A2B" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
+      Ridgetech
+    </div>
+    <nav>
+      <a href="#work">What we do</a>
+      <a href="#how">How we work</a>
+      <a href="#contact">Talk to us</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <svg class="topo" viewBox="0 0 1400 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path d="M-40 520 C 220 470, 380 560, 620 500 S 1080 420, 1440 480"/>
+    <path d="M-40 462 C 240 410, 400 505, 640 440 S 1090 358, 1440 420"/>
+    <path class="lit" d="M-40 404 C 260 350, 420 450, 660 380 S 1100 296, 1440 360"/>
+    <path d="M-40 346 C 280 292, 440 394, 680 320 S 1110 236, 1440 300"/>
+    <path d="M-40 288 C 300 236, 460 338, 700 262 S 1120 178, 1440 242"/>
+    <path d="M-40 230 C 320 180, 480 282, 720 204 S 1130 120, 1440 184"/>
+    <path d="M-40 172 C 340 124, 500 226, 740 146 S 1140 62, 1440 126"/>
+  </svg>
+
+  <div class="wrap">
+    <p class="eyebrow">Salesforce delivery · Est. 2019</p>
+    <h1>We build the systems your revenue <em>actually runs on.</em></h1>
+    <p class="lede">Ridgetech designs, builds, and maintains Salesforce platforms for companies where a broken integration means a lost quarter. Apex, Agentforce, and the operational discipline to keep it standing.</p>
+    <div class="cta-row">
+      <button class="btn btn-primary" onclick="openMango()">Talk to Mango</button>
+      <a class="btn btn-ghost" href="#work">See what we do</a>
+      <span class="hint">chat widget · bottom right</span>
+    </div>
+  </div>
+</div>
+
+<section id="work">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <p class="eyebrow">What we do</p>
+        <h2>Four practices, one delivery standard.</h2>
+      </div>
+      <div class="body-copy">
+        <p>Most Salesforce work fails quietly — a trigger that skips bulk records, an integration that drops retries, a handover doc nobody wrote. We build to a written internal standard and hand over the documentation that lets your team run it without us.</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card rise">
+        <p class="tick">01 / PLATFORM</p>
+        <h3>Apex &amp; automation</h3>
+        <p>Triggers, batch jobs, and async processing built for volume. Governor limits designed around, not discovered in production.</p>
+      </div>
+      <div class="card rise">
+        <p class="tick">02 / AGENTS</p>
+        <h3>Agentforce</h3>
+        <p>Conversational agents grounded in real actions. The model orchestrates; deterministic code does the work that matters.</p>
+      </div>
+      <div class="card rise">
+        <p class="tick">03 / INTEGRATION</p>
+        <h3>Systems that talk</h3>
+        <p>Google Workspace, Slack, Linear, and whatever else your stack runs on — with retry logic and failure alerting from day one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <p class="eyebrow">How we work</p>
+        <h2>Every engagement climbs the same way.</h2>
+      </div>
+      <div class="body-copy">
+        <p>The stages below run in order, and each one has a deliverable you can hold. We don't start building until the design document is signed, and we don't call it done until the runbook is in your hands.</p>
+      </div>
+    </div>
+
+    <ol class="stages">
+      <li class="stage rise">
+        <span class="elev">STAGE 01</span>
+        <div>
+          <h3>Discovery</h3>
+          <p>Two weeks with your team and your org. We map what exists, what's load-bearing, and what everyone has quietly stopped trusting.</p>
+        </div>
+      </li>
+      <li class="stage rise">
+        <span class="elev">STAGE 02</span>
+        <div>
+          <h3>Solution design</h3>
+          <p>A written design document covering data model, integration contracts, failure modes, and the security review answers before anyone asks them.</p>
+        </div>
+      </li>
+      <li class="stage rise">
+        <span class="elev">STAGE 03</span>
+        <div>
+          <h3>Build</h3>
+          <p>Two-week increments against a shared board. Test coverage is written alongside the code, not retrofitted the week before release.</p>
+        </div>
+      </li>
+      <li class="stage rise">
+        <span class="elev">STAGE 04</span>
+        <div>
+          <h3>Handover</h3>
+          <p>Runbook, field mapping sheet, release notes, and a working session with the team who inherits it. Then we're a phone call, not a dependency.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="band" id="contact">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <p class="eyebrow">Talk to us</p>
+        <h2>Start with a thirty-minute call.</h2>
+      </div>
+      <div class="body-copy">
+        <p>Tell Mango what you're trying to build. It'll find the next open slot with one of our engineers and send you a calendar invite before you close the tab.</p>
+        <div class="cta-row">
+          <button class="btn btn-primary" onclick="openMango()">Open the chat</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>Ridgetech · Salesforce delivery</span>
+    <span><a href="mailto:admin@ridgetech.io">admin@ridgetech.io</a></span>
+  </div>
+</footer>
+
+<script>
+  if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    const io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.rise').forEach(function (el, i) {
+      el.style.transitionDelay = (i % 4) * 70 + 'ms';
+      io.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.rise').forEach(function (el) { el.classList.add('in'); });
+  }
+
+  function openMango() {
+    if (window.embeddedservice_bootstrap && window.embeddedservice_bootstrap.utilAPI) {
+      window.embeddedservice_bootstrap.utilAPI.launchChat();
+    } else {
+      alert('Chat widget not loaded. Paste the Embedded Service snippet above the closing </body> tag, then reload.');
+    }
+  }
+
+  window.addEventListener('onEmbeddedMessagingReady', function () {
+    console.log('Mango widget ready');
+  });
+  window.addEventListener('onEmbeddedMessagingBootstrapError', function (e) {
+    console.error('Mango bootstrap error', e);
+  });
+</script>
+
+<!-- ==========================================================
+     PASTE THE SALESFORCE EMBEDDED SERVICE SNIPPET BELOW
+     Setup > Embedded Service Deployments > Mango > Get Code
+     ========================================================== -->
+
+
+</body>
+</html>
