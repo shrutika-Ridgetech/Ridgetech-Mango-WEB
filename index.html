@@ -324,10 +324,26 @@
   });
 </script>
 
-<!-- ==========================================================
-     PASTE THE SALESFORCE EMBEDDED SERVICE SNIPPET BELOW
-     Setup > Embedded Service Deployments > Mango > Get Code
-     ========================================================== -->
+  <script type='text/javascript'>
+	function initEmbeddedMessaging() {
+		try {
+			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+
+			embeddedservice_bootstrap.init(
+				'00Dcb000003XX8L',
+				'Ridgetech_Mango',
+				'https://ridgetech--agentforce.sandbox.my.site.com/ESWRidgetechMango1786603861147',
+				{
+					scrt2URL: 'https://ridgetech--agentforce.sandbox.my.salesforce-scrt.com'
+				}
+			);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
+	};
+</script>
+<script type='text/javascript' src='https://ridgetech--agentforce.sandbox.my.site.com/ESWRidgetechMango1786603861147/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+
 
 
 </body>
