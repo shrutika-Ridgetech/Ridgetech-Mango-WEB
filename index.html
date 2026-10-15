@@ -149,6 +149,40 @@
     .topo path{stroke-dasharray:2400;stroke-dashoffset:2400;animation:draw 2.4s ease forwards;}
     @keyframes draw{to{stroke-dashoffset:0;}}
   }
+
+  /* ---- Mango chat window: bigger, rounded, soft shadow ---- */
+  .embeddedMessagingFrame.isMaximized,
+  iframe[class*="embeddedMessagingFrame"][class*="isMaximized"]{
+    width:440px !important;
+    height:min(720px, calc(100vh - 48px)) !important;
+    max-height:none !important;
+    right:24px !important;
+    bottom:24px !important;
+    border-radius:16px !important;
+    box-shadow:0 24px 60px -12px rgba(14,42,43,.35), 0 0 0 1px rgba(14,42,43,.08) !important;
+    overflow:hidden;
+  }
+  /* ---- Mango chat window: full screen on phones ---- */
+  @media (max-width:600px){
+    .embeddedMessagingFrame.isMaximized,
+    iframe[class*="embeddedMessagingFrame"][class*="isMaximized"]{
+      width:100vw !important;
+      height:100dvh !important;
+      right:0 !important;
+      bottom:0 !important;
+      border-radius:0 !important;
+    }
+  }
+  /* ---- Mango chat launcher bubble in brand colors ---- */
+  .embeddedMessagingConversationButton{
+    background:var(--ink) !important;
+    box-shadow:0 10px 30px -8px rgba(14,42,43,.5) !important;
+    transition:background .18s, transform .18s !important;
+  }
+  .embeddedMessagingConversationButton:hover{
+    background:var(--amber-deep) !important;
+    transform:translateY(-2px);
+  }
 </style>
 </head>
 <body>
@@ -328,6 +362,10 @@
 	function initEmbeddedMessaging() {
 		try {
 			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+
+			// NEW (optional): uncomment to hide the default round bubble and open chat only from your own buttons.
+			// If you do, also remove the "chat widget · bottom right" hint in the hero.
+			// embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true;
 
 			embeddedservice_bootstrap.init(
 				'00Dcb000003XX8L',
